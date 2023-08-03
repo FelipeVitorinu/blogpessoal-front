@@ -1,33 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useContext } from 'react';
 
-interface User {
-  id: number;
-  name: string;
-}
+import { UserContext } from '../../contexts/UserContext';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Home() {
-
-  const [users, setUsers] = useState<User[]>([]);
-
-  useEffect(() => {
-    axios.get<User[]>('https://jsonplaceholder.typicode.com/users')
-      .then(response => {
-        setUsers(response.data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
+  const { nome, setNome } = useContext(UserContext);
 
   return (
-    <div>
-      <h1>Lista de usuários</h1>
-      <ul>
-        {users.map(user => (
-          <li key={user.id}>{user.name}</li>
-        ))}
-      </ul>
+    <div className='flex justify-center items-center'>
+      <div>
+        <h2 className="text-slate-900 text-5xl  my-4">Logar</h2>
+        <h2 className="text-slate-900 text-4xl ">Ola user : {nome}</h2>
+        <Link to="/login" className="my-4 rounded bg-indigo-400
+         hover:bg-indigo-900 text-white w-1/2 py-2 flex justify-center">
+          Voltar 
+        </Link>
+      </div>
+
     </div>
   );
 }
