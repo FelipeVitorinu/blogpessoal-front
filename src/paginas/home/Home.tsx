@@ -1,32 +1,35 @@
-import React from 'react';
-import homeLogo from '../../assets/homelogo.png'
-import './Home.css';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
+interface User {
+  id: number;
+  name: string;
+}
 
 function Home() {
-    return (
-        <>
-        <div className="bg-indigo-900 flex justify-center">
-          <div className='container grid grid-cols-2 text-white'>
-            <div className="flex flex-col gap-4 items-center justify-center py-4">
-              <h2 className='text-5xl font-bold'>Seja bem vinde!</h2>
-              <p className='text-xl'>Expresse aqui seus pensamentos e opniões</p>
-  
-              <div className="flex justify-around gap-4">
-              
-                <button className='rounded bg-white text-blue-800 py-2 px-4'>Ver postagens</button>
-              </div>
-            </div>
-  
-            <div className="flex justify-center ">
-              <img src={homeLogo} alt="" className='w-2/3' />
-      
-            </div>
-          </div>
-        </div>
-      
-      </>
-    );
+
+  const [users, setUsers] = useState<User[]>([]);
+
+  useEffect(() => {
+    axios.get<User[]>('https://jsonplaceholder.typicode.com/users')
+      .then(response => {
+        setUsers(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
+
+  return (
+    <div>
+      <h1>Lista de usuários</h1>
+      <ul>
+        {users.map(user => (
+          <li key={user.id}>{user.name}</li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
 export default Home;
