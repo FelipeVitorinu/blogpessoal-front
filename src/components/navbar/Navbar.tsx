@@ -19,7 +19,7 @@ function Navbar() {
                     {user.token !== "" ? (
                         <>
                             <Link to='/home' className="flex title-font font-medium items-center text-gray-900 hover:font-bold mb-4 md:mb-0">
-                                <img src={icon} alt="Butterfly Logo" />
+                                <img src={icon} alt="Pen Logo"/>
                                 <span className="ml-3 text-xl">My Blog</span>
                             </Link>
                             <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
@@ -40,7 +40,7 @@ function Navbar() {
                     ) : (
                         <>
                             <Link to='/' className="flex title-font font-medium items-center text-gray-900 hover:font-bold mb-4 md:mb-0">
-                                <img src={icon} alt="Butterfly Logo" />
+                                <img src={icon} alt="Butterfly Logo" className='w-6' />
                                 <span className="ml-3 text-xl">My Blog</span>
                             </Link>
                         </>
