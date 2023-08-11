@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import { toastAlert } from '../../util/toastAlert';
-import icon from '../../assets/icons/icon.png';
+import icon from '../../assets/icons/favicon.png';
 
 function Navbar() {
     const { user, handleLogout } = useContext(AuthContext)
